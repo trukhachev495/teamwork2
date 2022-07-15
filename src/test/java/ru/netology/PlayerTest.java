@@ -40,13 +40,11 @@ public class PlayerTest {
 
         Player player = new Player("Katya");
         player.installGame(game);
-        player.installGame(game1);
-        player.play(game, 10);
-        player.play(game1, 15);
 
-        int expected = 10;
-        int actual = player.sumGenre("Шутер");
-        assertEquals(expected, actual);
+        assertThrows(RuntimeException.class, () -> {
+            player.installGame(game1);
+
+        });
     }
 
     @Test
@@ -80,7 +78,6 @@ public class PlayerTest {
 
         player.play(game, 30);
         player.play(game1, 40);
-
 
         Game expected = game1;
         Game actual = player.mostPlayerByGenre(expected.getGenre());
